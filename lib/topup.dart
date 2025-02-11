@@ -35,24 +35,41 @@ class _TopUpScreenState extends State<TopUpScreen> {
     }
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color(0xFF0D0D0D),
-      appBar: AppBar(
-        backgroundColor: Colors.black,
-        title: Text(
-          'Top Up',
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+ @override
+Widget build(BuildContext context) {
+  return Scaffold(
+    backgroundColor: Colors.black,
+    appBar: PreferredSize(
+      preferredSize: const Size.fromHeight(kToolbarHeight),
+      child: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Colors.black, Color(0xFF1A237E)],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
         ),
-        centerTitle: true,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () {
-            Navigator.pop(context);
-          },
+        child: AppBar(
+          backgroundColor: Colors.transparent, // Transparent to show the gradient
+          elevation: 0, // Optional: Remove shadow
+          title: const Text(
+            'Deposit MONEY',
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          centerTitle: true,
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back, color: Colors.white),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
         ),
       ),
+    ),
+
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Column(
@@ -81,7 +98,7 @@ class _TopUpScreenState extends State<TopUpScreen> {
             ),
             SizedBox(height: 30),
             Text(
-              'Enter Top-up Amount',
+              'Enter Deposit Amount',
               style: TextStyle(color: Colors.white, fontSize: 16),
             ),
             SizedBox(height: 10),
@@ -114,7 +131,7 @@ class _TopUpScreenState extends State<TopUpScreen> {
                   ),
                 ),
                 child: Text(
-                  'Top Up',
+                  'ADD MONEY',
                   style: TextStyle(color: Colors.white, fontSize: 16),
                 ),
               ),
