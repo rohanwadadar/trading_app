@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'profile.dart'; // Import your profile screen here.
 import 'topup.dart';
+import 'portfolio.dart';
+import 'treanding.dart';
+import 'stock_details.dart'; // Import the new stock details page
 
 class DashboardScreen extends StatefulWidget {
   @override
@@ -10,16 +13,14 @@ class DashboardScreen extends StatefulWidget {
 class _DashboardScreenState extends State<DashboardScreen> {
   int _selectedIndex = 0; // For tracking the selected tab
 
-
   // List of screens to navigate
   final List<Widget> _screens = [
     DashboardContent(), // Dashboard content
-    Center(child: Text('Trending', style: TextStyle(color: Colors.white))),
+    TrendingScreen(),
     TopUpScreen(),
-    Center(child: Text('Wish List', style: TextStyle(color: Colors.white))),
+    Center(child: Text('Wish List', style: TextStyle(color: Colors.white))), //to be added later
     ProfileScreen(), // Replace with your Profile screen
   ];
-
 
   void _onItemTapped(int index) {
     setState(() {
@@ -61,7 +62,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.account_balance_wallet),
-              label: 'Top Up',
+              label: 'Add Money',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.favorite),
@@ -77,6 +78,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     );
   }
 }
+
 class DashboardContent extends StatefulWidget {
   @override
   _DashboardContentState createState() => _DashboardContentState();
@@ -93,7 +95,7 @@ class _DashboardContentState extends State<DashboardContent> {
         title: Row(
           children: [
             CircleAvatar(
-              backgroundImage: AssetImage('lib/assets/profile.jpg'),
+              backgroundImage: AssetImage('assets/profile.jpg'),
               radius: 16,
             ),
             SizedBox(width: 8),
@@ -136,7 +138,10 @@ class _DashboardContentState extends State<DashboardContent> {
             gradient: LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
-              colors: [Colors.black, Colors.blue[900]!],
+              colors: [
+                Colors.black,
+                Color(0xFF1A237E).withOpacity(0.8), // Dark blue gradient
+              ],
             ),
           ),
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -170,7 +175,19 @@ class _DashboardContentState extends State<DashboardContent> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  _buildNavigationItem(Icons.pie_chart, 'Portfolio'),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => PortfolioPage(),
+                        ),
+                      );
+                    },
+                    child: _buildNavigationItem(
+                      Icons.pie_chart, 'Portfolio',
+                    ),
+                  ),
                   _buildNavigationItem(
                       Icons.currency_exchange, 'Currencies'),
                   _buildNavigationItem(Icons.show_chart, 'Indices'),
@@ -302,15 +319,33 @@ class _DashboardContentState extends State<DashboardContent> {
       ],
     );
   }
+Widget _buildHorizontalStockList() {
+  // List of dummy stocks
+  final List<Map<String, String>> dummyStocks = [
+    {'name': 'BUKA', 'price': 'Rp278.00'},
+    {'name': 'BBN', 'price': 'Rp4,630.00'},
+    {'name': 'SDO', 'price': 'Rp24.00'},
+    {'name': 'AAPL', 'price': 'Rp150.00'},
+    {'name': 'GOOGL', 'price': 'Rp2,800.00'},
+  ];
 
-  Widget _buildHorizontalStockList() {
-    return Container(
-      height: 120,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: 5,
-        itemBuilder: (context, index) {
-          return Container(
+  return Container(
+    height: 120,
+    child: ListView.builder(
+      scrollDirection: Axis.horizontal,
+      itemCount: dummyStocks.length,
+      itemBuilder: (context, index) {
+        final stock = dummyStocks[index];
+        return GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => StockDetailsPage(stockName: stock['name']!),
+              ),
+            );
+          },
+          child: Container(
             width: 200,
             margin: EdgeInsets.only(right: 16),
             padding: EdgeInsets.all(12),
@@ -318,12 +353,33 @@ class _DashboardContentState extends State<DashboardContent> {
               color: Colors.grey[850],
               borderRadius: BorderRadius.circular(8),
             ),
-            child: Text('Stock Info $index', style: TextStyle(color: Colors.white)),
-          );
-        },
-      ),
-    );
-  }
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  stock['name']!,
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+                SizedBox(height: 8),
+                Text(
+                  stock['price']!,
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    ),
+  );
+}
 
   Widget _buildHorizontalNewsList() {
     return Container(
