@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart'; // Import font awesome
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ProfileScreen extends StatelessWidget {
   @override
@@ -44,7 +44,7 @@ class ProfileScreen extends StatelessWidget {
                     CircleAvatar(
                       radius: 50,
                       backgroundImage:
-                      AssetImage('assets/images/profile_picture.png'), // Replace with actual path
+                      AssetImage('assets/images/profile_picture.png'),
                     ),
                     SizedBox(height: 10),
                     Text(
@@ -67,86 +67,151 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 30),
-              // Account Section
-              SectionTitle(title: 'Account'),
+
+              // About Section
+              SectionTitle(title: 'About'),
               ProfileOption(
                 icon: Icons.person_outline,
                 title: 'Edit Profile',
-                onTap: () {
-                  // Navigate to Edit Profile
-                },
+                onTap: () {},
               ),
               ProfileOption(
-                icon: Icons.lock_outline,
-                title: 'Change Password',
-                onTap: () {
-                  // Navigate to Change Password
-                },
+                icon: Icons.info_outline,
+                title: 'Profile Information',
+                onTap: () {},
               ),
+
+              // Activity & Orders Section
+              SectionTitle(title: 'Activity & Orders'),
               ProfileOption(
-                icon: Icons.fingerprint,
-                title: 'Biometric',
-                trailing: Switch(
-                  value: true, // Replace with actual state
-                  onChanged: (value) {
-                    // Handle biometric toggle
-                  },
-                  activeColor: Colors.blue,
-                ),
-              ),
-              ProfileOption(
-                icon: Icons.support_agent,
-                title: 'Service Request',
-                onTap: () {
-                  // Navigate to Service Request
-                },
+                icon: Icons.history,
+                title: 'Activity History',
+                onTap: () {},
               ),
               ProfileOption(
                 icon: Icons.shopping_bag_outlined,
                 title: 'Orders',
-                onTap: () {
-                  // Navigate to Orders
-                },
+                onTap: () {},
               ),
+
+              // Watch Lists Section
+              SectionTitle(title: 'Watch Lists'),
               ProfileOption(
-                icon: Icons.account_balance_wallet_outlined,
-                title: 'Account details',
-                onTap: () {
-                  // Navigate to Account details
-                },
+                icon: Icons.star_outline,
+                title: 'Manage Watch Lists',
+                onTap: () {},
               ),
-              SizedBox(height: 20),
-              // Other Section
-              SectionTitle(title: 'Other'),
+
+              // Tax Forms Section
+              SectionTitle(title: 'Tax Forms'),
               ProfileOption(
                 icon: Icons.description_outlined,
-                title: 'Terms and Conditions',
-                onTap: () {
-                  // Navigate to Terms and Conditions
-                },
+                title: 'Tax Documents',
+                onTap: () {},
+              ),
+
+              // Communication Section
+              SectionTitle(title: 'Communication'),
+              ProfileOption(
+                icon: Icons.email_outlined,
+                title: 'Message Center',
+                onTap: () {},
               ),
               ProfileOption(
-                icon: Icons.privacy_tip_outlined,
-                title: 'Privacy Policy',
-                onTap: () {
-                  // Navigate to Privacy Policy
-                },
+                icon: Icons.notifications_outlined,
+                title: 'Notification Preferences',
+                onTap: () {},
               ),
+
+              // Alerts Section
+              SectionTitle(title: 'Alerts'),
+              ProfileOption(
+                icon: Icons.notification_important_outlined,
+                title: 'Manage Alerts',
+                onTap: () {},
+              ),
+
+              // Account Features Section
+              SectionTitle(title: 'Account Features'),
+              ProfileOption(
+                icon: Icons.featured_play_list_outlined,
+                title: 'Feature Settings',
+                onTap: () {},
+              ),
+
+              // Payments & Transfers Section
+              SectionTitle(title: 'Payments & Transfers'),
+              ProfileOption(
+                icon: Icons.payments_outlined,
+                title: 'Payment Methods',
+                onTap: () {},
+              ),
+              ProfileOption(
+                icon: Icons.swap_horiz,
+                title: 'Transfer Settings',
+                onTap: () {},
+              ),
+
+              // Brokerage & Trading Section
+              SectionTitle(title: 'Brokerage & Trading'),
+              ProfileOption(
+                icon: Icons.trending_up,
+                title: 'Trading Preferences',
+                onTap: () {},
+              ),
+
+              // Banks & Cards Section
+              SectionTitle(title: 'Banks & Cards'),
+              ProfileOption(
+                icon: Icons.credit_card,
+                title: 'Manage Debit Cards',
+                onTap: () {},
+              ),
+              ProfileOption(
+                icon: Icons.account_balance,
+                title: 'Linked Accounts & Banks',
+                onTap: () {},
+              ),
+
+              // Settings Section
+              SectionTitle(title: 'Settings'),
+              ProfileOption(
+                icon: Icons.settings,
+                title: 'General Settings',
+                onTap: () {},
+              ),
+              ProfileOption(
+                icon: Icons.view_quilt,
+                title: 'Layout',
+                trailing: Switch(
+                  value: false,
+                  onChanged: (value) {},
+                  activeColor: Colors.blue,
+                ),
+              ),
+
+              // Help Section
+              SectionTitle(title: 'Get Help'),
               ProfileOption(
                 icon: Icons.help_outline,
                 title: 'FAQ',
-                onTap: () {
-                  // Navigate to FAQ
-                },
+                onTap: () {},
               ),
+              ProfileOption(
+                icon: Icons.support_agent,
+                title: 'Contact Support',
+                onTap: () {},
+              ),
+
+              // Logout Option
+              SizedBox(height: 20),
               ProfileOption(
                 icon: Icons.logout,
                 title: 'Logout',
-                onTap: () {
-                  // Handle Logout
-                },
+                onTap: () {},
                 textColor: Colors.red,
               ),
+
               SizedBox(height: 30),
               // Social Media Section
               Center(
